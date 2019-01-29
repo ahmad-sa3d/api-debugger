@@ -28,6 +28,7 @@ When you are developing JSON API sometimes you need to debug it, but if you will
   "debug": {
     "database": {
       "total": 2,
+      "time": 2.72,
       "items": [
         {
           "connection": "accounts",

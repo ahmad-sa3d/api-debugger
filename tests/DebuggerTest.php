@@ -100,6 +100,7 @@ class DebuggerTest extends TestCase
                             ]
                         ],
                         'total',
+                        'time',
                     ],
                 ],
             ]);

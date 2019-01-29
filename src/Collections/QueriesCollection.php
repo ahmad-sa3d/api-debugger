@@ -49,6 +49,7 @@ class QueriesCollection implements Collection
     {
         return [
             'total' => $this->queries->count(),
+            'time' => $this->queries->sum('time'),
             'items' => $this->queries->toArray(),
             'duplicated' => $this->getDuplicatedQueries()->toArray(),
         ];
