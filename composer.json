@@ -1,5 +1,5 @@
 {
-    "name": "lanin/laravel-api-debugger",
+    "name": "lanin/lumen-api-debugger",
     "description": "Easily debug your JSON API.",
     "keywords": ["laravel", "framework", "api", "debug", "debugger", "json", "dump", "queries", "log"],
     "license": "MIT",
@@ -8,6 +8,11 @@
             "name": "Maxim Lanin",
             "email": "max@lanin.me",
             "homepage": "http://lanin.me"
+        },
+        {
+            "name": "Ahmed Saad",
+            "email": "a7mad.sa3d.2014@gmail.com",
+            "homepage": "http://parent.eu"
         }
     ],
     "require": {
