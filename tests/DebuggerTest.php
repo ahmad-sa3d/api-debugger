@@ -72,6 +72,10 @@ class DebuggerTest extends TestCase
 
             \DB::table('users')->get();
 
+            // run the same query
+            \DB::table('users')->get();
+
+
             return response()->json(['foo' => 'bar']);
         });
 
@@ -86,6 +90,14 @@ class DebuggerTest extends TestCase
                                 'query',
                                 'time',
                             ],
+                        ],
+                        'duplicated' => [
+                            '*' => [
+                                'connection',
+                                'query',
+                                'executions_count',
+                                'total_time',
+                            ]
                         ],
                         'total',
                     ],

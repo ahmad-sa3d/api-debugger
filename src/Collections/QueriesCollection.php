@@ -14,9 +14,9 @@ class QueriesCollection implements Collection
     protected $connection;
 
     /**
-     * @var array
+     * @var \Illuminate\Support\Collection
      */
-    protected $queries = [];
+    protected $queries;
 
     /**
      * QueriesCollection constructor.
@@ -25,6 +25,7 @@ class QueriesCollection implements Collection
     public function __construct()
     {
         $this->connection = app('db.connection');
+        $this->queries = collect();
 
         $this->listen();
     }
@@ -47,9 +48,34 @@ class QueriesCollection implements Collection
     public function items()
     {
         return [
-            'total' => count($this->queries),
-            'items' => $this->queries,
+            'total' => $this->queries->count(),
+            'items' => $this->queries->toArray(),
+            'duplicated' => $this->getDuplicatedQueries()->toArray(),
         ];
+    }
+
+    /**
+     * Duplicated Queries
+     *
+     * @return Collection
+     */
+    protected function getDuplicatedQueries(): \Illuminate\Support\Collection
+    {
+        return $this->queries->groupBy(function ($data) {
+            return $data['connection'] . ':' . $data['query'];
+        })
+            ->filter(function ($group) {
+                return $group->count() > 1;
+            })
+            ->map(function (\Illuminate\Support\Collection $group) {
+                $first = $group->first();
+                return [
+                    'connection' => $first['connection'],
+                    'query' => $first['query'],
+                    'executions_count' => $group->count(),
+                    'total_time' => $group->sum('time'),
+                ];
+            })->values();
     }
 
     /**
@@ -76,7 +102,7 @@ class QueriesCollection implements Collection
     {
         if (! empty($bindings)) {
             $query = vsprintf(
-                // Replace pdo bindings to printf string bindings escaping % char.
+            // Replace pdo bindings to printf string bindings escaping % char.
                 str_replace(['%', '?'], ['%%', "'%s'"], $query),
 
                 // Convert all query attributes to strings.
@@ -87,7 +113,7 @@ class QueriesCollection implements Collection
         // Finish query with semicolon.
         $query = rtrim($query, ';') . ';';
 
-        $this->queries[] = compact('connection', 'query', 'time');
+        $this->queries->push(compact('connection', 'query', 'time'));
     }
 
     /**

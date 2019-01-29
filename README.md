@@ -38,6 +38,19 @@ When you are developing JSON API sometimes you need to debug it, but if you will
           "connection": "posts",
           "query": "select * from `posts` where `author` = '1';",
           "time": 1.34
+        },
+        {
+          "connection": "posts",
+          "query": "select * from `posts` where `author` = '1';",
+          "time": 1
+        }
+      ],
+      "duplicated": [
+        {
+          "connection": "posts",
+          "query": "select * from `posts` where `author` = '1';",
+          "total_time": 2.34,
+          "executions_count": 2
         }
       ]
     },
