@@ -3,13 +3,13 @@
 namespace Lanin\Laravel\ApiDebugger;
 
 use Illuminate\Events\Dispatcher as Event;
-use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Lanin\Laravel\ApiDebugger\Collections\ProfilingCollection;
+use Lanin\Laravel\ApiDebugger\Events\RequestHandled;
 use Lanin\Laravel\ApiDebugger\Events\StopProfiling;
 use Lanin\Laravel\ApiDebugger\Events\StartProfiling;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response as Response;
 
 class Debugger
 {
@@ -80,6 +80,17 @@ class Debugger
     public function stopProfiling($name)
     {
         $this->event->dispatch(new StopProfiling($name));
+    }
+
+    /**
+     * Finish profiling event.
+     *
+     * @param Request $request
+     * @param Response $response
+     */
+    public function requestHandled(Request $request, Response $response)
+    {
+        $this->event->dispatch(new RequestHandled($request, $response));
     }
 
     /**

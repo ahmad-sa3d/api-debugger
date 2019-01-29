@@ -2,6 +2,9 @@
 
 namespace Lanin\Laravel\ApiDebugger;
 
+use Illuminate\Routing\Router;
+use Lanin\Laravel\ApiDebugger\Middleware\RequestHandledMiddleware;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -24,6 +27,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $config = $this->app['config'];
         if ($config['app.debug']) {
             $this->registerCollections($config['api-debugger.collections']);
+        }
+
+        // Register
+        if ($this->app instanceof \Illuminate\Foundation\Application) {
+            // Laravel
+            /** @var \Illuminate\Foundation\Http\Kernel $kernel */
+            $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];//->addMiddleware(RequestHandledMiddleware::class);
+            $kernel->pushMiddleware(RequestHandledMiddleware::class);
+        } else {
+            // Lumen
+            $this->app->middleware(RequestHandledMiddleware::class);
         }
     }
 

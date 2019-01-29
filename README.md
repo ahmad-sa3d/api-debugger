@@ -1,8 +1,10 @@
-# Laravel-API-Debugger
+# Lumen-API-Debugger
+
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/mlanin/laravel-api-debugger)
 
 > Easily debug your JSON API.
 
+This Package is built on top of [Laravel-API-Debugger](https://github.com/mlanin/laravel-api-debugger)  Package to add compatibility for `Lumen` framework 
 When you are developing JSON API sometimes you need to debug it, but if you will use `dd()` or `var_dump()` you will break the output that will affect every client that is working with your API at the moment. Debugger is made to provide you with all your debug information and not corrupt the output.
 
 ```json
@@ -56,15 +58,17 @@ When you are developing JSON API sometimes you need to debug it, but if you will
 
 [PHP](https://php.net) >=5.5.9+ or [HHVM](http://hhvm.com) 3.3+, [Composer](https://getcomposer.org) and [Laravel](http://laravel.com) 5.4+ are required.
 
-To get the latest version of Laravel Laravel-API-Debugger, simply add the following line to the require block of your `composer.json` file.
-
+Installation
 ```
-"lanin/laravel-api-debugger": "^3.0"
+composer require lanin/lumen-api-debugger
 ```
-
-You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
-
 Once Laravel-API-Debugger is installed, you need to register the service provider. Open up `config/app.php` and add the following to the providers key.
+
+For Lumen
+```php
+// bootstrap/app.php
+ $app->register(Lanin\Laravel\ApiDebugger\ServiceProvider::class);
+```
 
 For Laravel 5.4
 ```php
