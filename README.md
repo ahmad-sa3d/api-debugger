@@ -4,7 +4,8 @@
 
 > Easily debug your JSON API.
 
-This Package is built on top of [Laravel-API-Debugger](https://github.com/mlanin/laravel-api-debugger)  Package to add compatibility for `Lumen` framework 
+__This Package is an enhancement of [Laravel-API-Debugger](https://github.com/mlanin/laravel-api-debugger)  Package to add compatibility for `Lumen` framework__
+
 When you are developing JSON API sometimes you need to debug it, but if you will use `dd()` or `var_dump()` you will break the output that will affect every client that is working with your API at the moment. Debugger is made to provide you with all your debug information and not corrupt the output.
 
 ```json
