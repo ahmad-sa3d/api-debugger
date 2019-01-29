@@ -1,4 +1,4 @@
-# Lumen-API-Debugger
+# API-Debugger
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/mlanin/laravel-api-debugger)
 
