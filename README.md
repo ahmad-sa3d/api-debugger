@@ -60,7 +60,7 @@ When you are developing JSON API sometimes you need to debug it, but if you will
 
 Installation
 ```
-composer require lanin/lumen-api-debugger
+composer require saad/api-debugger
 ```
 Once Laravel-API-Debugger is installed, you need to register the service provider. Open up `config/app.php` and add the following to the providers key.
 

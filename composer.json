@@ -1,5 +1,5 @@
 {
-    "name": "lanin/lumen-api-debugger",
+    "name": "saad/api-debugger",
     "description": "Easily debug your JSON API.",
     "keywords": ["laravel", "lumen", "framework", "api", "debug", "debugger", "json", "dump", "queries", "log"],
     "license": "MIT",
