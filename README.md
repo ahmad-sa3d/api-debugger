@@ -63,27 +63,48 @@ Installation
 ```
 composer require saad/api-debugger
 ```
-Once Laravel-API-Debugger is installed, you need to register the service provider. Open up `config/app.php` and add the following to the providers key.
+#### For Lumen
 
-For Lumen
+1- Register the package service provider
 ```php
 // bootstrap/app.php
  $app->register(Lanin\Laravel\ApiDebugger\ServiceProvider::class);
 ```
 
-For Laravel 5.4
+2- this package will be enabled/disabled according to app debugging configuration
+so you need to have the debug key in app configuration file `config/app.php`
+
+if you do not have that file or you do not have a debug key inside it so you will need to create then register that file or add the debug key 
+
+```php
+// bootstrap/app.php
+$app->configure('app');
+
+// config/app.php
+<?php 
+
+return [
+    // debug status key
+    'debug' => env('APP_DEBUG', false),
+];
+```
+
+#### For Laravel 5.4
+
+Open up `config/app.php` and add the following to the providers key.
+
 ```php
 Lanin\Laravel\ApiDebugger\ServiceProvider::class,
 ```
 
 Also you can register a Facade for easier access to the Debugger methods.
 
-For Laravel 5.4
 ```php
 'Debugger' => Lanin\Laravel\ApiDebugger\Facade::class,
 ```
 
-For Laravel 5.5 package supports [package discovery](https://laravel.com/docs/5.5/packages#package-discovery) feature.
+#### For Laravel 5.5
+package supports [package discovery](https://laravel.com/docs/5.5/packages#package-discovery) feature.
 
 ## Json response
 
