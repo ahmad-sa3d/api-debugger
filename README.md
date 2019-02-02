@@ -85,24 +85,16 @@ composer require saad/api-debugger
  $app->register(Lanin\Laravel\ApiDebugger\ServiceProvider::class);
 ```
 
-2- this package will be enabled/disabled according to app debugging configuration
-so you need to have the debug key in app configuration file `config/app.php`
+2- this package will be enabled/disabled according to `api-debugger.enabled` configuration which depends on this env value `ENABLE_API_DEBUG`
 
-if you do not have that file or you do not have a debug key inside it so you will need to create then register that file or add the debug key 
+you can copy the configuration file `api-debugger.php`  to `config` directory and customize it as you like
+by doing this, you will have to register the new configuration file in `bootstrap/app.php`
 
 ```php
 // bootstrap/app.php
-$app->configure('app');
-
-// config/app.php
-<?php 
-
-return [
-    // debug status key
-    'debug' => env('APP_DEBUG', false),
-];
+ $app->configure('api-debugger');
 ```
-
+ 
 #### For Laravel 5.4
 
 Open up `config/app.php` and add the following to the providers key.

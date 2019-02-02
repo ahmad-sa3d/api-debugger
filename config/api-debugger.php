@@ -2,6 +2,11 @@
 
 return [
     /**
+     * Enable or disable API debugging mode
+     */
+    'enabled' => env('ENABLE_API_DEBUG', false),
+
+    /**
      * Specify what data to collect.
      */
     'collections' => [

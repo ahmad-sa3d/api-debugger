@@ -25,7 +25,7 @@ abstract class TestCase extends BaseTestCase
     {
         /** @var \Illuminate\Config\Repository $config */
         $config = $app['config'];
-        $config->set('app.debug', true);
+        $config->set('api-debugger.enabled', true);
         $config->set('database.default', 'testing');
         $config->set(
             'database.connections.testing',
